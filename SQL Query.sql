@@ -1,46 +1,4 @@
-/*
---Lookup Tables
 
-create table Countries (
-	Country varchar(40),
-	
-	constraint PK_Countries Primary key(Country)
-)
-
-Create table SortedBy(
-	Criteria varchar(20)
-
-	constraint PK_Criteria Primary key(Criteria)
-)
-
-INSERT INTO SortedBy (Criteria)
-VALUES
-	('Magic'),
-	('Popularity'),
-	('Newest'),
-	('End Date'),
-	('Most Funded'),
-	('Most Backed'),
-	('Near Me')
-
-create table CCTypes
-(
-	CCType varchar(20)
-
-	constraint PK_CCTypes Primary key(CCType)
-)
-
-INSERT INTO CCTypes (CCType)
-VALUES
-	('AMEX'),
-	('Diners Club'),
-	('Discover'),
-	('JCB'),
-	('Mastercard'),
-	('UnionPay'),
-	('Visa')
-*/
---Tables
 -- drop table Customers
 create table Customers(
 	[Customer ID]	int Not Null,
@@ -112,15 +70,32 @@ create table Reviews(
 	constraint FK_Reviews_Customers	Foreign key([Customer ID]) references Customers([Customer ID]),
 	constraint FK_Reviews_Products Foreign key([Product ID]) references Products([Product ID])
 )
---	constraint FK_Users_Country	Foreign key(Country) references Countries(Country),
---	constraint CK_U_Email		check([E-mail] like '%@%.%'),
---	constraint CK_U_Name		check(Name not like '%[0-9]%'),
-create table Websites(
-	[User E-mail]	varchar(30) Not Null,
-	Website			varchar(30) Not Null,
-	
-	constraint PK_Websites	Primary key([User E-mail],Website),
-	constraint FK_W_Users	Foreign key([User E-mail])
-		references Users([E-mail]),
-	constraint CK_W_Website	check(Website like '%www.%.%')
+--drop table details
+create table Details(
+	[Order ID]	int Not Null,
+	[Product ID] int Not Null,
+	Quantity int Not Null,
+	Discount Real Not Null
+
+	constraint PK_Details Primary key([Order ID],[Product ID]),
+	constraint FK_Details_Orders Foreign key([Order ID]) references Orders([Order ID]),
+	constraint FK_Details_Products Foreign key([Product ID]) references Products([Product ID])
 )
+--drop table Covid19_Canada_Dataset
+create table Covid19_Canada_Dataset(
+	[Object ID]	int Not Null,
+	[Province] varchar(20) Not Null,
+	[Province Code] varchar(20) Not Null,
+	[Summary Date] Date Not Null,
+	[Total Cases] int Not Null,
+	[Daily Total] int Not Null,
+	[Total Recovered] int Not Null,
+	[Daily Recovered] int Not Null,
+	[Total Deaths] int Not Null,
+	[Daily Deaths] int Not Null,
+	[Total Tested] int Not Null,
+	[Daily Tested] int Not Null
+
+	constraint PK_Covid19_Canada_Dataset Primary key([Object ID])
+)
+
