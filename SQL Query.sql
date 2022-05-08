@@ -1,5 +1,12 @@
+ drop table Covid19_Canada_Dataset
+ drop table details
+ drop table reviews
+ drop table Stock
+ drop table Orders
+ drop table products
+ drop table Customers
+ drop table Warehouses
 
--- drop table Customers
 create table Customers(
 	[Customer ID]	int Not Null,
 	[Customer Name]	varchar(20) Not Null,
@@ -12,7 +19,7 @@ create table Customers(
 	constraint PK_Customer			Primary key([Customer ID])
 
 )
--- drop table Warehouses
+
 create table Warehouses(
 	[Warehouse ID]	int Not Null,
 	Street	varchar(20) Not Null,
@@ -23,32 +30,17 @@ create table Warehouses(
 
 	constraint PK_Warehouse	Primary key([Warehouse ID])
 )
--- drop table Orders
-create table Orders(
-	[Order ID]	int Not Null,
-	[Order Date] Date Not Null,
-	[Customer]	int Not Null,
-	[Shipping Date]	Date Not Null,
-	[Number Of Days]	int Not Null,
-	[Freight]	Real Not Null,
-	[Shipping Mode]	varchar(20) Not Null,
-	[Warehouse ID]	int Not Null
 
-	constraint PK_Order	Primary key([Order ID]),
-	constraint FK_Orders_Customers	Foreign key(Customer) references Customers([Customer ID]),
-	constraint FK_Orders_Warehouse	Foreign key([Warehouse ID]) references Warehouses([Warehouse ID])
-)
--- drop table products
 create table Products(
 	[Product ID]	int Not Null,
 	Category varchar(20) Not Null,
 	[Sub-Category]	varchar(20) Not Null,
-	[Product-Date]	varchar(20) Not Null,
+	[Product-Name]	varchar(20) Not Null,
 	[Unit Cost]	Money Not Null
 
 	constraint PK_Products	Primary key([Product ID])
 )
--- drop table Stock
+
 create table Stock(
 	[Warehouse ID]	int Not Null,
 	[Product ID] int Not Null,
@@ -59,7 +51,7 @@ create table Stock(
 	constraint FK_Stock_Warehouse	Foreign key([Warehouse ID]) references Warehouses([Warehouse ID]),
 	constraint FK_Stock_Product	Foreign key([Product ID]) references Products([Product ID])
 )
---drop table reviews
+
 create table Reviews(
 	[Customer ID]	int Not Null,
 	[Product ID] int Not Null,
@@ -70,18 +62,7 @@ create table Reviews(
 	constraint FK_Reviews_Customers	Foreign key([Customer ID]) references Customers([Customer ID]),
 	constraint FK_Reviews_Products Foreign key([Product ID]) references Products([Product ID])
 )
---drop table details
-create table Details(
-	[Order ID]	int Not Null,
-	[Product ID] int Not Null,
-	Quantity int Not Null,
-	Discount Real Not Null
 
-	constraint PK_Details Primary key([Order ID],[Product ID]),
-	constraint FK_Details_Orders Foreign key([Order ID]) references Orders([Order ID]),
-	constraint FK_Details_Products Foreign key([Product ID]) references Products([Product ID])
-)
---drop table Covid19_Canada_Dataset
 create table Covid19_Canada_Dataset(
 	[Object ID]	int Not Null,
 	[Province] varchar(20) Not Null,
@@ -98,4 +79,27 @@ create table Covid19_Canada_Dataset(
 
 	constraint PK_Covid19_Canada_Dataset Primary key([Object ID])
 )
+create table Orders(
+	[Order ID]	int Not Null,
+	[Order Date] Date Not Null,
+	[Customer]	int Not Null,
+	[Shipping Date]	Date Not Null,
+	[Freight]	Real Not Null,
+	[Shipping Mode]	varchar(20) Not Null,
+	[Warehouse ID]	int Not Null
 
+	constraint PK_Order	Primary key([Order ID]),
+	constraint FK_Orders_Customers	Foreign key(Customer) references Customers([Customer ID]),
+	constraint FK_Orders_Warehouse	Foreign key([Warehouse ID]) references Warehouses([Warehouse ID])
+)
+
+create table Details(
+	[Order ID]	int Not Null,
+	[Product ID] int Not Null,
+	Quantity int Not Null,
+	Discount Real Not Null
+
+	constraint PK_Details Primary key([Order ID],[Product ID]),
+	constraint FK_Details_Orders Foreign key([Order ID]) references Orders([Order ID]),
+	constraint FK_Details_Products Foreign key([Product ID]) references Products([Product ID])
+)
