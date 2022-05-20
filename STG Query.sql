@@ -1,28 +1,29 @@
--- drop table SuperStore_STG.dbo.STG_Provinces
--- drop table SuperStore_STG.dbo.STG_Cities
--- drop table SuperStore_STG.dbo.STG_Warehouses
--- drop table SuperStore_STG.dbo.STG_Products
--- drop table SuperStore_STG.dbo.STG_Customers
--- drop table SuperStore_STG.dbo.STG_Stock
--- drop table SuperStore_STG.dbo.STG_Customers_Sales
--- drop table SuperStore_STG.dbo.STG_Reviews
--- drop table SuperStore_STG.dbo.STG_Orders_Items
--- drop table SuperStore_STG.dbo.STG_Summary
--- drop table SuperStore_STG.dbo.STG_Covid19
-
--- truncate table SuperStore_STG.dbo.STG_Provinces
--- truncate table SuperStore_STG.dbo.STG_Cities
--- truncate table SuperStore_STG.dbo.STG_Warehouses
--- truncate table SuperStore_STG.dbo.STG_Products
--- truncate table SuperStore_STG.dbo.STG_Customers
--- truncate table SuperStore_STG.dbo.STG_Stock
--- truncate table SuperStore_STG.dbo.STG_Customers_Sales
--- truncate table SuperStore_STG.dbo.STG_Reviews
--- truncate table SuperStore_STG.dbo.STG_Orders_Items
--- truncate table SuperStore_STG.dbo.STG_Summary
--- truncate table SuperStore_STG.dbo.STG_Covid19
-
-
+ /*
+ drop table SuperStore_STG.dbo.STG_Provinces
+ drop table SuperStore_STG.dbo.STG_Cities
+ drop table SuperStore_STG.dbo.STG_Warehouses
+ drop table SuperStore_STG.dbo.STG_Products
+ drop table SuperStore_STG.dbo.STG_Customers
+ drop table SuperStore_STG.dbo.STG_Stock
+ drop table SuperStore_STG.dbo.STG_Customers_Sales
+ drop table SuperStore_STG.dbo.STG_Reviews
+ drop table SuperStore_STG.dbo.STG_Orders_Items
+ drop table SuperStore_STG.dbo.STG_Summary
+ drop table SuperStore_STG.dbo.STG_Covid19
+*/
+/*
+truncate table SuperStore_STG.dbo.STG_Provinces
+truncate table SuperStore_STG.dbo.STG_Cities
+truncate table SuperStore_STG.dbo.STG_Warehouses
+truncate table SuperStore_STG.dbo.STG_Products
+truncate table SuperStore_STG.dbo.STG_Customers
+truncate table SuperStore_STG.dbo.STG_Stock
+truncate table SuperStore_STG.dbo.STG_Customers_Sales
+ truncate table SuperStore_STG.dbo.STG_Reviews
+ truncate table SuperStore_STG.dbo.STG_Orders_Items
+truncate table SuperStore_STG.dbo.STG_Summary
+truncate table SuperStore_STG.dbo.STG_Covid19
+*/
 
 --drop table Provinces
 create table SuperStore_STG.dbo.STG_Provinces(
@@ -74,7 +75,8 @@ create table SuperStore_STG.dbo.STG_Stock(
 	[Warehouse_ID] int ,
 	[DW_Product_ID]	int ,
 	[In Stock]	int ,
-	[Date] Date 
+	[Date] Date ,
+	[Row Number] int
 
 	--constraint PK_Stock	Primary key([DW_Stock_ID]),
 	--constraint FK_Stock_Warehouse	Foreign key([Warehouse_ID]) references Warehouses([Warehouse ID]),

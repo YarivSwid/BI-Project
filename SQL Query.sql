@@ -16,7 +16,6 @@
 --TRUNCATE TABLE Super_Store.dbo.products
 --TRUNCATE TABLE Super_Store.dbo.Customers
 --TRUNCATE TABLE Super_Store.dbo.Warehouses
-
 create table Super_Store.dbo.Customers(
 	[Customer ID]	int Not Null,
 	[Customer Name]	varchar(60) ,
@@ -54,18 +53,19 @@ create table Super_Store.dbo.Stock(
 	[Warehouse ID]	int Not Null,
 	[Product ID] int Not Null,
 	[Date]	Date Not Null,
-	[In Stock]	int 
+	[In Stock]	int, 
+	[Row Number] int identity(1,1)
 
 	constraint PK_Stock	Primary key([Warehouse ID],[Product ID],[Date]),
 --	constraint FK_Stock_Warehouse	Foreign key([Warehouse ID]) references Warehouses([Warehouse ID]),
 --	constraint FK_Stock_Product	Foreign key([Product ID]) references Products([Product ID])
 )
-
 create table Super_Store.dbo.Reviews(
 	[Customer ID]	int Not Null ,
 	[Product ID] int Not Null,
 	[Review Date]	Date Not Null,
-	[Rank]	int 
+	[Rank]	int ,
+	[Row Number] int identity(1,1)
 
 	constraint PK_Reviews Primary key([Customer ID],[Product ID],[Review Date]),
 	--constraint FK_Reviews_Customers	Foreign key([Customer ID]) references Customers([Customer ID]),
@@ -86,7 +86,7 @@ create table Super_Store.dbo.Covid19_Canada_Dataset(
 	[Total Tested] int ,
 	[Daily Tested] int 
 
-	constraint PK_Covid19_Canada_Dataset Primary key([Object ID])
+	constraint PK_Covid19_Canada Primary key([Object ID])
 )
 create table Super_Store.dbo.Orders(
 	[Order ID]	int Not Null,
@@ -101,12 +101,12 @@ create table Super_Store.dbo.Orders(
 	--constraint FK_Orders_Customers	Foreign key(Customer) references Customers([Customer ID]),
 	--constraint FK_Orders_Warehouse	Foreign key([Warehouse ID]) references Warehouses([Warehouse ID])
 )
-
 create table Super_Store.dbo.Details(
 	[Order ID]	int Not Null,
 	[Product ID] int Not Null,
 	Quantity int ,
-	Discount Real 
+	Discount Real ,
+	[Row Number] int identity(1,1)
 
 	constraint PK_Details Primary key([Order ID],[Product ID]),
 	--constraint FK_Details_Orders Foreign key([Order ID]) references Orders([Order ID]),
