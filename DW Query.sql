@@ -114,6 +114,7 @@ create table SuperStore_DW.dbo.DIM_Products(
 
 	--constraint PK_Products	Primary key([DW_Product_ID])
 )
+
 --create table DIM_Dates()--??????????????????????????
 create table SuperStore_DW.dbo.DIM_Customers(
 	[DW_Customer_ID]	int IDENTITY(1,1),
@@ -216,4 +217,24 @@ create table SuperStore_DW.dbo.Fact_Covid19(
 	--constraint PK_Fact_Covid19 Primary key([Object ID]),
 	--constraint FK_Fact_Covid19_DIM_Provinces Foreign key(Province) references DIM_Provinces(Province),
 	--constraint FK_Fact_Covid19_DIM_Provinces Foreign key([Summary Date]) references DIM_Dates([Dates])
+)
+--drop table SuperStore_DW.dbo.WarehouseSnapshot
+create table SuperStore_DW.dbo.WarehouseSnapshot(
+	[Warehouse_ID]	int ,
+	[City]	varchar(60),
+	[Date] date,
+	[Orders] int,
+	[Total Income] money,
+	[Max Number Of Orders Per Month] int,
+
+
+)
+--drop table SuperStore_DW.dbo.Warehouses_Snapshot
+create table SuperStore_DW.dbo.Warehouses_Snapshot(
+	[Date] date,
+	[Warehouse_ID] int,
+	City varchar(60),
+	[Amount of Orders per Month] int,
+	[Total Income per Month] money
+
 )
