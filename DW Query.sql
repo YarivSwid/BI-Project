@@ -9,7 +9,7 @@
 -- drop table SuperStore_DW.dbo.Fact_Orders_Items
 -- drop table SuperStore_DW.dbo.Fact_Summary
 -- drop table SuperStore_DW.dbo.Fact_Covid19
- drop table SuperStore_DW.dbo.DIM_DATE
+ --drop table SuperStore_DW.dbo.DIM_DATE
 
 -- truncate table SuperStore_DW.dbo.DIM_Provinces
 -- truncate table SuperStore_DW.dbo.DIM_Cities
@@ -115,19 +115,34 @@ create table SuperStore_DW.dbo.DIM_Products(
 	--constraint PK_Products	Primary key([DW_Product_ID])
 )
 
---create table DIM_Dates()--??????????????????????????
+--drop table SuperStore_DW.dbo.DIM_Customers
 create table SuperStore_DW.dbo.DIM_Customers(
 	[DW_Customer_ID]	int IDENTITY(1,1),
 	[Customer ID]	bigint ,
 	[Customer Name]	varchar(60),
 	[Segment]		varchar(60) ,
 	[City]	varchar(60) ,
+	[Valid From] date ,
+	[Valid Until] date
 	
 	--constraint PK_Customer			Primary key([DW_Customer_ID]),
 	--constraint FK_DIM_Customers_DIM_Cities Foreign key([City]) references DIM_Cities(City)
 )
 	
-
+--drop table SuperStore_DW.dbo.DIM_Customers_Old
+create table SuperStore_DW.dbo.DIM_Customers_Old(
+	[DW_Customer_ID]	int , 
+	[Customer ID]	bigint ,
+	[Customer Name]	varchar(60),
+	[Segment]		varchar(60) ,
+	[City]	varchar(60) ,
+	[Valid From] date ,
+	[Valid Until] date
+	
+	--constraint PK_Customer			Primary key([DW_Customer_ID]),
+	--constraint FK_DIM_Customers_DIM_Cities Foreign key([City]) references DIM_Cities(City)
+)
+	
 create table SuperStore_DW.dbo.Fact_Stock(
 	[DW_Stock_ID]	int IDENTITY(1,1),
 	[Warehouse_ID] int ,
@@ -231,10 +246,15 @@ create table SuperStore_DW.dbo.WarehouseSnapshot(
 )
 --drop table SuperStore_DW.dbo.Warehouses_Snapshot
 create table SuperStore_DW.dbo.Warehouses_Snapshot(
-	[Date] date,
+    City varchar(60),
 	[Warehouse_ID] int,
-	City varchar(60),
+	[Date] date,
 	[Amount of Orders per Month] int,
 	[Total Income per Month] money
-
 )
+
+create procedure [dbo].[updateOldCustomers_Old]
+as Begin
+update DIM_Customers set [Valid Until] = GetDate() where DW_Customer_ID in (Select DW_Customer_ID from SuperStore_DW.dbo.DIM_Customers_Old)
+truncate table SuperStore_DW.dbo.DIM_Customers_Old
+END
