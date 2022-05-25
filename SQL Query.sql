@@ -8,14 +8,16 @@
  drop table Super_Store.dbo.Customers
  drop table Super_Store.dbo.Warehouses
 */
---TRUNCATE TABLE Super_Store.dbo.Covid19_Canada_Dataset
---TRUNCATE TABLE Super_Store.dbo.details
---TRUNCATE TABLE Super_Store.dbo.reviews
---TRUNCATE TABLE Super_Store.dbo.Stock
---TRUNCATE TABLE Super_Store.dbo.Orders
---TRUNCATE TABLE Super_Store.dbo.products
---TRUNCATE TABLE Super_Store.dbo.Customers
---TRUNCATE TABLE Super_Store.dbo.Warehouses
+/*
+TRUNCATE TABLE Super_Store.dbo.Covid19_Canada_Dataset
+TRUNCATE TABLE Super_Store.dbo.details
+TRUNCATE TABLE Super_Store.dbo.reviews
+TRUNCATE TABLE Super_Store.dbo.Stock
+TRUNCATE TABLE Super_Store.dbo.Orders
+TRUNCATE TABLE Super_Store.dbo.products
+TRUNCATE TABLE Super_Store.dbo.Customers
+TRUNCATE TABLE Super_Store.dbo.Warehouses
+*/
 create table Super_Store.dbo.Customers(
 	[Customer ID]	int Not Null,
 	[Customer Name]	varchar(60) ,

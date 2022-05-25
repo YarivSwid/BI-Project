@@ -10,21 +10,22 @@
 -- drop table SuperStore_DW.dbo.Fact_Summary
 -- drop table SuperStore_DW.dbo.Fact_Covid19
  --drop table SuperStore_DW.dbo.DIM_DATE
-
--- truncate table SuperStore_DW.dbo.DIM_Provinces
--- truncate table SuperStore_DW.dbo.DIM_Cities
--- truncate table SuperStore_DW.dbo.DIM_Warehouses
--- truncate table SuperStore_DW.dbo.DIM_Products
--- truncate table SuperStore_DW.dbo.DIM_Customers
--- truncate table SuperStore_DW.dbo.Fact_Stock
--- truncate table SuperStore_DW.dbo.Fact_Customers_Sales
--- truncate table SuperStore_DW.dbo.Fact_Reviews
--- truncate table SuperStore_DW.dbo.Fact_Orders_Items
--- truncate table SuperStore_DW.dbo.Fact_Summary
--- truncate table SuperStore_DW.dbo.Fact_Covid19
--- truncate table SuperStore_DW.dbo.DIM_DATE
-select *
-from SuperStore_DW.dbo.DIM_DATE
+ /*
+ truncate table SuperStore_DW.dbo.DIM_Provinces
+ truncate table SuperStore_DW.dbo.DIM_Cities
+ truncate table SuperStore_DW.dbo.DIM_Warehouses
+ truncate table SuperStore_DW.dbo.DIM_Products
+ truncate table SuperStore_DW.dbo.DIM_Customers
+ truncate table SuperStore_DW.dbo.Fact_Stock
+ truncate table SuperStore_DW.dbo.Fact_Customers_Sales
+ truncate table SuperStore_DW.dbo.Fact_Reviews
+ truncate table SuperStore_DW.dbo.Fact_Orders_Items
+ truncate table SuperStore_DW.dbo.Fact_Summary
+ truncate table SuperStore_DW.dbo.Fact_Covid19
+ truncate table SuperStore_DW.dbo.DIM_DATE
+*/
+--select *
+--from SuperStore_DW.dbo.DIM_DATE
 create table SuperStore_DW.dbo.DIM_DATE
 (
 	[Date] date,
@@ -128,7 +129,10 @@ create table SuperStore_DW.dbo.DIM_Customers(
 	--constraint PK_Customer			Primary key([DW_Customer_ID]),
 	--constraint FK_DIM_Customers_DIM_Cities Foreign key([City]) references DIM_Cities(City)
 )
-	
+
+--UPDATE DIM_Customers
+--SET [Valid From] = '2017-01-01'
+
 --drop table SuperStore_DW.dbo.DIM_Customers_Old
 create table SuperStore_DW.dbo.DIM_Customers_Old(
 	[DW_Customer_ID]	int , 

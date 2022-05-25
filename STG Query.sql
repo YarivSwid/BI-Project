@@ -19,8 +19,8 @@ truncate table SuperStore_STG.dbo.STG_Products
 truncate table SuperStore_STG.dbo.STG_Customers
 truncate table SuperStore_STG.dbo.STG_Stock
 truncate table SuperStore_STG.dbo.STG_Customers_Sales
- truncate table SuperStore_STG.dbo.STG_Reviews
- truncate table SuperStore_STG.dbo.STG_Orders_Items
+truncate table SuperStore_STG.dbo.STG_Reviews
+truncate table SuperStore_STG.dbo.STG_Orders_Items
 truncate table SuperStore_STG.dbo.STG_Summary
 truncate table SuperStore_STG.dbo.STG_Covid19
 */
@@ -90,7 +90,6 @@ create table SuperStore_STG.dbo.STG_Customers_Sales(
 	[Total Quantity] int ,
 	[Total Discount Amount]	 money,
 	[Total Amount] money
-
 	--constraint PK_Customers_Sale Primary key([DW_Customer_ID],[Date]),
 	--constraint FK_Customers_Sales_Customers Foreign key([DW_Customer_ID]) references Customers([DW_Customer_ID]),
 	--constraint FK_Customers_Sales_Dates Foreign key([Date]) references Dates([Date]) --??????????
