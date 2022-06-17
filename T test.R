@@ -15,3 +15,9 @@ Test2 <- t.test(x=table$Quantity,
                 y=table$Amount,alternative = "less",
                 paired = FALSE,var.equal = FALSE,conf.level = 0.95) 
 print(Test2)
+ 
+
+################################################################################
+new <- table(table$Province,table$Category)
+ftable(new)
+summary(new)
