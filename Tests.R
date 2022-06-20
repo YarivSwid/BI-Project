@@ -1,24 +1,15 @@
 
+
+library(sqldf)
+
+# create a t test to check if there is difference between average sales before the covid-19
+#to the average sales after covid-19
 filePath=choose.files() 
 table<-read.csv(filePath,header=TRUE)
 
-# create a t test to check if there is effect from quantity
-# on the amount of revenue
-
-Test1 <- t.test(x=table$Quantity,
-                      y=table$Amount,alternative = "two.sided",
-                      paired = FALSE,var.equal = FALSE,conf.level = 0.95) 
-print(Test1)
-
-#Test1 <- t.test(x=table$Amount~table$Quantity,alternative = "two.sided",
-#                paired = FALSE,var.equal = FALSE,conf.level = 0.95) 
-#print(Test1)
-# create a t test for a negative effect from quantity on the amount of revenue
-Test2 <- t.test(x=table$Quantity,
-                y=table$Amount,alternative = "less",
-                paired = FALSE,var.equal = FALSE,conf.level = 0.95) 
-print(Test2)
- 
+tTest <- t.test(x=data$before_covid,y=data$after_covid,
+                paired = TRUE,var.equal = FALSE,conf.level = 0.95)
+print(tTest)
 
 ################################################################################
 new <- table(table$Province,table$Category) # create a temp table
